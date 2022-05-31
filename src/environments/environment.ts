@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // UserAPIURL:"https://localhost:44396/api/v1.0/Tweets/",
+  // TweetAPIURL:"https://localhost:44313/api/v1.0/Tweets/"
+  UserAPIURL:"http://tweetuserapi.azurewebsites.net/api/v1.0/Tweets/",
+  TweetAPIURL:"http://tweetapi.eastus.azurecontainer.io/api/v1.0/Tweets/"
 };
 
 /*

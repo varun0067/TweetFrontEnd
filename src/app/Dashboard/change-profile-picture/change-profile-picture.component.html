@@ -1,0 +1,40 @@
+<a data-toggle="modal" data-target="#exampleModalCenterProfilePicture"><h4>Change Profile Picture</h4></a>
+<div class="modal fade" id="exampleModalCenterProfilePicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h2 class="pull-left">Change Profile Picture</h2>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+      <div class="text-center">
+        <div class="help-block" *ngIf="changeProfilePictureForm.controls.profileImage.touched && changeProfilePictureForm.controls.profileImage.invalid">Password is required.</div>
+        </div>
+			<form [formGroup]="changeProfilePictureForm" (ngSubmit)="changePicture()">  
+
+                <div class="form-group row">
+                    <div class="col">
+                        <div *ngIf="imageBase64">
+                            <p>Selected Profile Image</p>
+                            <img [src]="imageBase64" width="250px" height="250px"/>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="form-group row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <label class="pull-left" for="profileImage">Profile Image</label>
+                    <input type="file" class="form-control"  ngModel formControlName="profileImage" id="profileImage" (change)="previewFile()" placeholder="Profile Image">
+                    </div>
+                </div>
+				
+			<div class="modal-footer">
+				<input name="reset" id="reset" class="btn btn-block login-btn mb-4" [disabled]="changeProfilePictureForm.invalid" type="submit" value="Change Picture">
+			  </div>	   
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </div>

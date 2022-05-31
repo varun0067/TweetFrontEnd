@@ -1,0 +1,32 @@
+<div class="form-postTweet">
+  <form [formGroup]="tweetForm" (ngSubmit)="postTweet()">
+
+
+      <div class="postTweet">
+        <h3 text-align="center">What's on your mind. Add a Tweet.</h3>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <input type="text" class="form-control" id="tweetTags" formControlName="tweetTags" placeholder="Tweet Tags Hash Tags">
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="help-block"
+              *ngIf="tweetForm.controls.tweetMessage.touched && tweetForm.controls.tweetMessage.invalid">Tweet Message
+              is required.</div>
+              <textarea class="form-control" rows="6" id="tweetMessage" formControlName="tweetMessage"
+              placeholder="Tweet Message"></textarea>
+              <br>
+              <br>
+              <button class="btn btn-lg pull-right" [disabled]="tweetForm.invalid" type="submit">Tweet</button>
+          </div>
+        </div>
+        <br>
+
+
+      </div>
+  </form>
+</div>

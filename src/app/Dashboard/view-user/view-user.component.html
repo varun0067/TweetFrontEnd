@@ -1,0 +1,54 @@
+<app-user-nav></app-user-nav>
+<div class="user-card">
+    <div class="col-md-6">
+        <img [src]="user.profileImage" height="250" width="250">
+    </div>
+    <div class="col-md-6">
+        <p>{{user.username}}</p>
+        <p>{{user.firstName}}</p>
+        <p>{{user.lastName}}</p>
+        <p>{{user.email}}</p>
+        <p>{{user.contactNumber}}</p>
+    </div>
+</div>
+<div *ngIf="loaded">
+        <div class="tweet-view col-md-8 col-md-offset-2">
+            <h2>My Tweets</h2>
+            <div *ngIf="tweets.length==0"><h3>No Tweets to display.</h3></div>
+            <div *ngFor="let tweet of tweets;index as i">
+                <div class="card-header">
+                    <img class="profile-image" height="45" width="45" [src]="tweet.profileImage">
+                    <p class="tweet-user" style="font-size: 25px;"> @ {{tweet.username}}</p>
+                    <p class="tweet-user pull-right"> {{getTimeDiff(tweet.tweetTime)}} ago</p>
+                </div>
+                <div class="card-body">
+                    <p class="tweet-tags">{{tweet.tweetTags}}</p>
+                    <p class="tweet-message">{{tweet.tweetMessage}}</p>
+                </div>
+                <div class="card-link" *ngIf="tweet.replies.length>0">
+                    <a class="card-link" *ngIf="!viewComment[i]" (click)="viewCommentClicked(i)">View Comments</a>
+                    <a class="card-link" *ngIf="viewComment[i]" (click)="viewCommentClicked(i)">Hide Comments</a>
+                </div>
+
+                <div class="card-link">
+                    <a class="card-link">{{tweet.likes}} <span class="bi bi-heart-fill"></span></a> 
+                </div>
+
+                <div *ngIf="viewComment[i]">
+                    <div class="reply-card" *ngFor="let reply of tweet.replies">
+                        <div class="reply-card-header">
+                            <img height="45" width="45" [src]="reply.profileImage">
+                            <p class="tweet-user" style="font-size: 25px;">@ {{reply.username}}</p>
+                            <p class="tweet-user pull-right">{{getTimeDiff(reply.tweetTime)}} ago</p>
+                        </div>
+                        <div>
+                            <div class="reply-card-body">
+                                <p class="tweet-tags">{{reply.tweetTags}}</p>
+                                <p class="tweet-message">{{reply.tweetMessage}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

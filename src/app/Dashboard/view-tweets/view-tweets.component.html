@@ -1,0 +1,55 @@
+<div *ngIf="loaded">
+    <div class="tweet-view">
+        <h2>All Tweets</h2>
+        <div *ngIf="tweets.length==0"><h3>No Tweets to display.</h3></div>
+        <div *ngFor="let tweet of tweets;index as i">
+            <div class="card-header">
+                <img class="profile-image" height="45" width="45" [src]="tweet.profileImage">
+                <p class="tweet-user" style="font-size: 25px;"> @ {{tweet.username}}</p>
+                <p class="tweet-user pull-right"> {{getTimeDiff(tweet.tweetTime)}} ago</p>
+            </div>
+            <div class="card-body">
+                <p class="tweet-tags">{{tweet.tweetTags}}</p>
+                <p class="tweet-message">{{tweet.tweetMessage}}</p>
+            </div>
+            <a class="card-link" (click)="replyTweetClicked(i)">Reply</a>
+            <div class="card-link" *ngIf="tweet.replies.length>0">
+                <a class="card-link" *ngIf="!viewComment[i]" (click)="viewCommentClicked(i)">View Comments</a>
+                <a class="card-link" *ngIf="viewComment[i]" (click)="viewCommentClicked(i)">Hide Comments</a>
+            </div>
+            <div class="card-link">
+                <a class="card-link" (click)="likeTweet(tweet.id)">Like</a>
+                <a class="card-link">{{tweet.likes}} <span class="bi bi-heart-fill"></span></a> 
+            </div>
+            <div *ngIf="viewComment[i]">
+                <div class="reply-card" *ngFor="let reply of tweet.replies">
+                    <div class="reply-card-header">
+                        <img height="45" width="45" [src]="reply.profileImage">
+                        <p class="tweet-user" style="font-size: 25px;">@ {{reply.username}}</p>
+                        <p class="tweet-user pull-right">{{getTimeDiff(reply.tweetTime)}} ago</p>
+                    </div>
+                    <div>
+                        <div class="reply-card-body">
+                            <p class="tweet-tags">{{reply.tweetTags}}</p>
+                            <p class="tweet-message">{{reply.tweetMessage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reply-card" *ngIf="replyTweet[i]">
+                <h4>Reply</h4>
+                <form [formGroup]="replyForm" (ngSubmit)="PostComments(tweet.id,i)">
+                        <div class="form-group">
+                        <div class="help-block"
+                        *ngIf="replyForm.controls.tweetMessage.touched && replyForm.controls.tweetMessage.invalid">Tweet Message
+                        is required.</div>
+                        <input type="text" class="form-control" formControlName="tweetTags" id="tweetTags" placeholder="Hash Tags">
+                        <textarea class="form-control" formControlName="tweetMessage" id="tweetMessage" rows="1" placeholder="New Comment" style="border-radius: none;"></textarea>
+                        </div>
+                        <!-- <button type="button" class="btn btn-small btn-default" (click)="PostComments(tweet.id,i)">Reply</button> -->
+                        <button class="btn btn-small btn-default" [disabled]="replyForm.invalid" type="submit">Reply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

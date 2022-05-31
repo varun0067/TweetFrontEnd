@@ -1,0 +1,57 @@
+.tweet-view{
+    margin-top: 75px;
+    background-color: white;
+    padding: 30px;
+    color:black;
+}
+h2{
+    margin-bottom: 30px;
+}
+.card-header{
+    margin-top: 15px;
+    background-color: rgb(34, 48, 60); 
+    color: white;
+    padding: 5px;
+}
+.profile-image{
+    border-radius: 2em;
+}
+.tweet-user{
+    display: inline;
+}
+.card-body{
+    border: 2px solid  rgb(34, 48, 60);
+    padding-left:80px;
+}
+.tweet-message{
+    font-size: 30px;
+}
+.tweet-tags{
+    font-size: 20px;
+}
+.reply-card{
+    margin-left: 180px;
+}
+.card-link{
+    margin-left: 10px;
+    text-decoration: none;
+    display: inline;
+}
+.reply-card-header{
+    background-color: rgb(34, 48, 60); 
+    color: white;
+    padding: 5px;
+}
+.reply-card-body{
+    border: 2px solid  rgb(34, 48, 60);
+    padding-left:80px;
+    margin-bottom: 10px;
+}
+input{
+    margin-bottom: 10px;
+}
+.user-card{
+    color: white;
+    padding: 15px;
+    font-size: 25px;
+}

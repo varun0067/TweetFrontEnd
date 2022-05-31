@@ -1,0 +1,50 @@
+<app-home-nav></app-home-nav>
+<body class="text-center">
+    <main class="form-signin">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="row">
+
+              <div class="col-md-7">
+                <img src="../../../assets/images/tweethome.png" alt="" class="login-card-img">
+              </div>
+
+              <div class="login col-md-5">
+                <h1 class="h3 fw-normal">Login</h1>
+                <hr>
+                
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="help-block" *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">Email or Username is required.</div>
+                    <input type="text" class="mb-4 form-control" id="username"  formControlName="username" placeholder="Username/Email" >
+                  </div>
+                </div>
+                <br>
+                
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="help-block" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">Password is required.</div>
+                    <input type="password" class="mb-4 form-control" id="password" formControlName="password"  placeholder="Password">
+                    <i class="bi bi-eye pull-right" id="toggle" (click)="showPassword()" style="color: white;"></i>
+                  </div>
+                </div>
+                <br>
+                
+                <button class="btn btn-lg btn-success" [disabled]="loginForm.invalid" type="submit">SIGN IN</button>
+                <hr>
+
+                <br>
+
+                 <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="alert alert-danger" *ngIf="invalidCredentials">Invalid Credentials</div>
+                    </div>
+                </div>
+
+                <h4>Don't have an account?  <button class="btn btn-warning" type="button" routerLink="/register">Register now</button></h4>
+                <app-forgot-password></app-forgot-password>
+              
+              </div>
+            </div>
+          </form>
+      </main>
+</body> 

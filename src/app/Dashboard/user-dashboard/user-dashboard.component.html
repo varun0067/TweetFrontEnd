@@ -1,0 +1,49 @@
+<app-user-nav></app-user-nav>
+<div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <p id="user-card-heading">Welcome,{{user.firstName}} {{user.lastName}}</p>
+                </div>
+                <div class="card-body">
+                    <div class="center" style="text-align: center;">
+                        <img class="img-center" [src]="profileImage"/>
+                        <h4 class="card-title">{{user.username}}</h4>
+                        <h4 class="card-title">{{user.email}}</h4>
+                        <h4 class="card-title">{{user.contactNumber}}</h4>
+                        <app-change-password></app-change-password>
+                        <app-change-profile-picture></app-change-profile-picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-7">
+            <app-post-tweet></app-post-tweet>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card-body" id="users">
+                <h3>Users</h3>
+                <hr>
+                <form [formGroup]="searchForm">
+                        <div class="form-group">
+                        <input type="text" class="form-control" formControlName="username" (keyup)="filterUser()" id="username" placeholder="Search">
+                        </div>
+                </form>
+                <ng-container *ngFor="let user of filteredUsers;index as i">
+                    <div *ngIf="i<6"><img class="card-img-top" [src]="user.profileImage"
+                            style="height:40px; width:45px;">&nbsp;
+                        <a routerLink="/view-user/{{user.username}}"><h3>{{user.username}}</h3></a>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <app-view-tweets></app-view-tweets>
+        </div>
+    </div>
+</div>

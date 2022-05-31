@@ -1,0 +1,128 @@
+<app-home-nav></app-home-nav>
+<body class="text-center">
+    <form [formGroup]="registrationForm" id="registrationForm" (ngSubmit)="register()">
+        <div class="layout row">
+
+            <div class="col-md-6">
+                <img src="../../../assets/images/tweetregister.jpg" alt="" class="login-card-img">
+            </div>
+
+            <div class="register col-md-6">
+                <h2>Register</h2>
+                <hr>
+                <div class="col-md-12  alert alert-success" id="RegisterSuccess" *ngIf="registrationSuccess">Registration Successful</div>
+                
+                <div class="form-group row">
+                    <div class="col">
+                        <div *ngIf="imageBase64">
+                            <p>Selected Profile Image</p>
+                            <img [src]="imageBase64" width="250px" height="250px"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+
+                    <div class="col-md-6">
+                        <label class="pull-left" for="name">First Name</label>
+                        <input type="text" class="form-control"  ngModel formControlName="firstname" id="firstname" placeholder=" Alphabets and Space Only" >
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.firstname.touched&&registrationForm.controls.firstname.errors?.required">First Name is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.firstname.touched&&registrationForm.controls.firstname.invalid">First Name cannot contain special case or numbers.</div>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label class="pull-left" for="name">Last Name</label>
+                        <input type="text" class="form-control"  ngModel formControlName="lastname" id="lastname" placeholder=" Alphabets and Space Only" >
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.lastname.touched&&registrationForm.controls.lastname.errors?.required">Last Name is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.lastname.touched&&registrationForm.controls.lastname.invalid">Last Name cannot contain special case or numbers.</div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                
+                    <div class="col-md-6">
+                        <label class="pull-left" for="gender">Gender</label>
+                        <select class="form-control"  ngModel formControlName="gender" id="gender">
+                            <option hidden value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                        <div class="help-block" *ngIf="registrationForm.controls.gender.touched&&registrationForm.controls.gender.errors?.required">Please select the gender.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="pull-left" for="email">Email Address</label>
+                        <input type="email" class="form-control"  ngModel formControlName="email" id="email" placeholder="Email" >
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.email.touched&&registrationForm.controls.email.errors?.required">E-mail is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.email.touched&&registrationForm.controls.email.invalid">Email should contain (@ and .).Example abc@xyz.com</div>
+                    </div>
+
+                </div>
+    
+                <div class="form-group row">
+
+                    <div class="col-md-6">
+                        <label class="pull-left" for="contactNumber">Contact Number</label>
+                        <input type="number" class="form-control"  ngModel formControlName="contactnumber" id="contactnumber" placeholder="Contact Number">
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.contactnumber.touched&&registrationForm.controls.contactnumber.errors?.required">Contact Number is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.contactnumber.touched&&registrationForm.controls.contactnumber.invalid">>Contact Number should be 10 digits.And starts with (6 or 7 or 8 or 9)</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="pull-left" for="age">Date of Birth</label>
+                        <input type="date" class="form-control"  ngModel formControlName="dateofbirth" id="dateofbirth" placeholder="Date Of Birth">
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.dateofbirth.touched&&registrationForm.controls.dateofbirth.errors?.required">Date of Birth is required.</div>
+                    </div>
+                    
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="pull-left" for="password">Username</label>
+                        <input type="text" class="form-control"  ngModel formControlName="username" id="username" placeholder="username">
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.username.touched&&registrationForm.controls.username.errors?.required">Username is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.username.touched&&registrationForm.controls.username.invalid">Username contain only charecters and numbers.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="pull-left" for="profileImage">Profile Image (optional)</label>
+                        <input type="file" class="form-control"  ngModel formControlName="profileImage" id="profileImage" (change)="previewFile()" placeholder="Profile Image">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="pull-left" for="password">Password</label>
+                        <input type="password" class="form-control"  ngModel formControlName="password" id="password" placeholder="password">
+                        
+                        <div class="help-block" *ngIf="registrationForm.controls.password.touched&&registrationForm.controls.password.errors?.required">Password Number is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.password.touched&&registrationForm.controls.password.invalid">Password should contain atleast 6 charecters.</div>
+                    </div>
+
+                    <div class=" col-md-6">
+                        <label class="pull-left" for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control"  ngModel formControlName="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                    
+                        <div class="help-block" *ngIf="registrationForm.controls.confirmPassword.touched&&registrationForm.controls.confirmPassword.errors?.required">Password Number is required.</div>
+                        <div class="help-block" *ngIf="registrationForm.controls.confirmPassword.touched&&registrationForm.controls.confirmPassword.invalid">Password should contain atleast 6 charecters.</div>
+                    </div>
+                </div>
+
+                <br>
+                <div>
+                        <button type="submit" [disabled]="registrationForm.invalid"
+                            class="btn btn-primary btn-lg">Register</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
